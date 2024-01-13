@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="ApplicationForm.css">
+    <title>Application Form</title>
+</head>
+
+<body>
+
+    <h1>Application Form</h1>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <form>
+        <div style="display: flex">
+            <div class="profile-picture">
+                <div class="image-holder" onclick="uploadImage()" style="height: 100%;">
+                    <img id="uploaded-image" src="AddPicture.png" alt="Could not load the image">
+                    <input type="file" hidden id="image-upload" accept="image/*" onchange="previewImage(this)">
+                </div>
+            </div>
+            <div class="middle-section">
+                <div class="names">
+                    <label for="first name"><b>Enter first name:</b></label>
+                    <input type="text" placeholder="First name" id="first name" required>
+
+                    <label class="last-name" for="last name"><b>Enter last name:</b></label>
+                    <input type="text" placeholder="Last name" id="last name" required>
+                </div>
+                <br>
+                <div class="phone-email">
+                    <label for="phone number"><b>Enter phone number:</b></label>
+                    <input type="text" placeholder="Phone number" id="phone number" required>
+
+                    <label class="email" for="email"><b>Enter email:</b></label>
+                    <input type="email" placeholder="Email" id="email" required>
+                </div>
+                <br>
+                <div class="cv-gender">
+                    <label for="cv"><b>Upload CV:</b></label>
+                    <input type="file" id="cv">
+
+                    <label class="gender" for="gender"><b>Select gender:</b></label>
+                    <input type="radio" name="gender" value="Male"> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                    <input type="radio" name="gender" value="Other"> Other
+                </div>
+                <br>
+                <div class="birth-facebook">
+                    <label for="birth date"><b>Enter birth date:</b></label>
+                    <input type="date" id="birth date">
+
+                    <label class="facebook" for="facebook"><b>Enter facebook:</b></label>
+                    <input type="text" placeholder="Facebook" id="facebook" required>
+                </div>
+                <br>
+                <div class="submit">
+                    <input type="submit" value="Submit">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="faq">
+        <p></p>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function updateFileName(input) {
+        const fileName = input.files[0].name;
+        document.getElementById('fileLabel').innerText = fileName;
+    }
+
+    function uploadImage(){
+        document.getElementById('image-upload').click();
+    }
+
+    function previewImage(input){
+        if(input.files && input.files[0]){
+            const reader = new FileReader();
+            reader.onload = function(e){
+                const uploadedImage = document.getElementById('uploaded-image');
+                uploadedImage.src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
